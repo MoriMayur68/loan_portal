@@ -70,7 +70,7 @@ const getAllLoans = async (req, res) => {
     if (status) query.status = status;
 
     let loans = Loan.find(query)
-      .populate('userId', 'name email phone')
+      .populate('userId', 'name email phone gender')
       .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
       .limit(Number(limit));
@@ -87,7 +87,7 @@ const getAllLoans = async (req, res) => {
 // @route GET /api/admin/loans/:id
 const getAdminLoanById = async (req, res) => {
   try {
-    const loan = await Loan.findById(req.params.id).populate('userId', 'name email phone address occupation annualIncome');
+    const loan = await Loan.findById(req.params.id).populate('userId', 'name email phone address occupation annualIncome gender');
     if (!loan) return res.status(404).json({ message: 'Loan not found' });
     res.json(loan);
   } catch (error) {

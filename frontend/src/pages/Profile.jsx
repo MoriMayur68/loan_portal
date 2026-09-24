@@ -10,6 +10,7 @@ const Profile = () => {
     name: user?.name || '', phone: user?.phone || '',
     address: user?.address || '', occupation: user?.occupation || '',
     annualIncome: user?.annualIncome || '',
+    gender: user?.gender || 'Prefer not to say',
   });
   const [pwForm, setPwForm] = useState({ currentPassword: '', newPassword: '', confirm: '' });
   const [profileLoading, setProfileLoading] = useState(false);
@@ -59,6 +60,7 @@ const Profile = () => {
             <span className="badge badge-active">{user?.role}</span>
           </div>
           <div className="avatar-info-list">
+            {user?.gender && <div className="avatar-info-row"><span>👤</span>{user.gender}</div>}
             {user?.phone && <div className="avatar-info-row"><span>📞</span>{user.phone}</div>}
             {user?.address && <div className="avatar-info-row"><span>📍</span>{user.address}</div>}
             {user?.occupation && <div className="avatar-info-row"><span>💼</span>{user.occupation}</div>}
@@ -82,10 +84,22 @@ const Profile = () => {
                     onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })} />
                 </div>
               </div>
-              <div className="form-group">
-                <label className="form-label">Address</label>
-                <input id="prof-address" type="text" className="form-input" value={profileForm.address}
-                  onChange={(e) => setProfileForm({ ...profileForm, address: e.target.value })} />
+              <div className="form-grid-2">
+                <div className="form-group">
+                  <label className="form-label">Gender</label>
+                  <select id="prof-gender" className="form-input" value={profileForm.gender}
+                    onChange={(e) => setProfileForm({ ...profileForm, gender: e.target.value })}>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Address</label>
+                  <input id="prof-address" type="text" className="form-input" value={profileForm.address}
+                    onChange={(e) => setProfileForm({ ...profileForm, address: e.target.value })} />
+                </div>
               </div>
               <div className="form-grid-2">
                 <div className="form-group">

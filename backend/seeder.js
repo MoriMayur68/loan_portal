@@ -42,6 +42,7 @@ const seedData = async () => {
       role: 'user',
       phone: '+91 9876543210',
       address: '42, Sunshine Enclave, Bengaluru',
+      gender: 'Male',
       occupation: 'Senior Software Engineer',
       annualIncome: 1800000,
     });
@@ -53,6 +54,7 @@ const seedData = async () => {
       role: 'user',
       phone: '+91 9876543211',
       address: '15, Green Park, Ahmedabad',
+      gender: 'Female',
       occupation: 'Architect',
       annualIncome: 1400000,
     });

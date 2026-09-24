@@ -9,7 +9,7 @@ import './Auth.css';
 const Register = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ name: '', email: '', password: '', phone: '', address: '' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', phone: '', address: '', gender: 'Prefer not to say' });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -55,10 +55,22 @@ const Register = () => {
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="form-label">Email Address</label>
-            <input id="reg-email" type="email" className="form-input" placeholder="you@example.com"
-              value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+          <div className="form-grid-2">
+            <div className="form-group">
+              <label className="form-label">Email Address</label>
+              <input id="reg-email" type="email" className="form-input" placeholder="you@example.com"
+                value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Gender</label>
+              <select id="reg-gender" className="form-input" value={form.gender}
+                onChange={(e) => setForm({ ...form, gender: e.target.value })}>
+                <option value="Prefer not to say">Prefer not to say</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
           </div>
 
           <div className="form-group">

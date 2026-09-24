@@ -124,6 +124,10 @@ const LoanDetail = () => {
               <span className="info-val">{loan.userId?.name || 'N/A'}</span>
             </div>
             <div className="info-item">
+              <span className="info-label">Gender</span>
+              <span className="info-val">{loan.userId?.gender || 'N/A'}</span>
+            </div>
+            <div className="info-item">
               <span className="info-label">Email</span>
               <span className="info-val">{loan.userId?.email || 'N/A'}</span>
             </div>

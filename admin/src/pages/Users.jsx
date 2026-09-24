@@ -60,6 +60,7 @@ const Users = () => {
               <thead>
                 <tr>
                   <th>Borrower</th>
+                  <th>Gender</th>
                   <th>Contact Info</th>
                   <th>Occupation</th>
                   <th>Annual Income</th>
@@ -94,6 +95,11 @@ const Users = () => {
                           <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Role: {u.role}</div>
                         </div>
                       </div>
+                    </td>
+                    <td>
+                      <span className="badge badge-info" style={{ textTransform: 'capitalize' }}>
+                        {u.gender || 'N/A'}
+                      </span>
                     </td>
                     <td>
                       <div>{u.email}</div>

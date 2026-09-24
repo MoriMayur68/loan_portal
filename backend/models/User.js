@@ -32,6 +32,12 @@ const userSchema = new mongoose.Schema(
     dateOfBirth: {
       type: Date,
     },
+    gender: {
+      type: String,
+      enum: ['Male', 'Female', 'Other', 'Prefer not to say'],
+      default: 'Prefer not to say',
+      trim: true,
+    },
     occupation: {
       type: String,
       trim: true,

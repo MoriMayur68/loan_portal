@@ -8,20 +8,21 @@ const generateToken = (id) =>
 // @route POST /api/auth/register
 const register = async (req, res) => {
   try {
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address, gender } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'Email already registered' });
     }
 
-    const user = await User.create({ name, email, password, phone, address });
+    const user = await User.create({ name, email, password, phone, address, gender });
 
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
+      gender: user.gender,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -68,6 +69,7 @@ const login = async (req, res) => {
       role: user.role,
       phone: user.phone,
       address: user.address,
+      gender: user.gender,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -90,10 +92,10 @@ const getMe = async (req, res) => {
 // @route PUT /api/auth/profile
 const updateProfile = async (req, res) => {
   try {
-    const { name, phone, address, occupation, annualIncome, dateOfBirth } = req.body;
+    const { name, phone, address, occupation, annualIncome, dateOfBirth, gender } = req.body;
     const user = await User.findByIdAndUpdate(
       req.user._id,
-      { name, phone, address, occupation, annualIncome, dateOfBirth },
+      { name, phone, address, occupation, annualIncome, dateOfBirth, gender },
       { new: true, runValidators: true }
     );
     res.json(user);
